@@ -1,6 +1,7 @@
 package com.aleinikov.central_library_spring.entities;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -8,8 +9,8 @@ import java.util.Objects;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "book_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "title")
@@ -19,24 +20,12 @@ public class Book {
     private String author;
 
     @Column(name = "order_date")
-    private String order_date;
+    private Date order_date;
 
     @Column(name = "customer")
     private String customer;
 
     public Book() {
-    }
-
-    public Book(String title, String author) {
-        this.title = title;
-        this.author = author;
-    }
-
-    public Book(String title, String author, String order_date, String customer) {
-        this.title = title;
-        this.author = author;
-        this.order_date = order_date;
-        this.customer = customer;
     }
 
     public Long getId() {
@@ -63,11 +52,11 @@ public class Book {
         this.author = author;
     }
 
-    public String getOrder_date() {
+    public Date getOrder_date() {
         return order_date;
     }
 
-    public void setOrder_date(String order_date) {
+    public void setOrder_date(Date order_date) {
         this.order_date = order_date;
     }
 

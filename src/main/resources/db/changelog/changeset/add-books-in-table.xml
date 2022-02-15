@@ -1,0 +1,28 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2" author="Aleinikov">
+        <insert tableName="books">
+            <column name="title">Война и мир</column>
+            <column name="author">Лев Толстой</column>
+        </insert>
+        <insert tableName="books">
+            <column name="title">1984</column>
+            <column name="author">Джордж Оруэлл</column>
+            <column name="order_date">2021-11-11</column>
+            <column name="customer">Адиль Токушев</column>
+        </insert>
+        <insert tableName="books">
+            <column name="title">Лолита</column>
+            <column name="author">Владимир Набоков</column>
+            <column name="order_date">2019-08-21</column>
+            <column name="customer">Алдияр</column>
+        </insert>
+        <insert tableName="books">
+            <column name="title">Невидимка</column>
+            <column name="author">Ральф Эллисон</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
