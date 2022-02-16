@@ -25,6 +25,10 @@ public class Book {
     @Column(name = "customer")
     private String customer;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "library_id")
+    private Library library;
+
     public Book() {
     }
 
@@ -73,12 +77,12 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return Objects.equals(title, book.title) && Objects.equals(author, book.author);
+        return Objects.equals(id, book.id) && Objects.equals(title, book.title) && Objects.equals(author, book.author);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, author);
+        return Objects.hash(id, title, author);
     }
 
     @Override
@@ -87,8 +91,9 @@ public class Book {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
-                ", order_date='" + order_date + '\'' +
+                ", order_date=" + order_date +
                 ", customer='" + customer + '\'' +
+                ", library=" + library +
                 '}';
     }
 }

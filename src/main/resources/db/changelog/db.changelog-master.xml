@@ -8,4 +8,5 @@
     </preConditions>
     <include file="db/changelog/changeset/create-books-table.xml"/>
     <include file="db/changelog/changeset/add-books-in-table.xml"/>
+    <include file="db/changelog/changeset/create-libraries-table.xml"/>
 </databaseChangeLog>
