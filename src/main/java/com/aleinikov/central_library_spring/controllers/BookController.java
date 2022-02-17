@@ -1,5 +1,6 @@
 package com.aleinikov.central_library_spring.controllers;
 
+import com.aleinikov.central_library_spring.dto.BookDTO;
 import com.aleinikov.central_library_spring.entities.Book;
 import com.aleinikov.central_library_spring.services.BookService;
 import org.springframework.http.HttpStatus;
@@ -12,72 +13,51 @@ import java.util.List;
 @RequestMapping("/api")
 public class BookController {
 
-    private BookService bookService;
+    private final BookService bookService;
 
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }
 
-    @GetMapping("/books")
-    public List<Book> findAll() {
+    @GetMapping("/book")
+    public List<BookDTO> findAll() {
         return bookService.findAll();
     }
 
     @GetMapping("/book/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
-        Book book = bookService.findById(id);
-        if (book.getId() == null)
-            return new ResponseEntity<>("The book with this ID=" + id + " does not exist!", HttpStatus.BAD_REQUEST);
+        BookDTO book = bookService.findById(id);
         return new ResponseEntity<>(book,HttpStatus.OK);
     }
 
     @PostMapping("/book")
-    public Book addNewBook(@RequestBody Book book) {
-        Book savedBook = bookService.saveBook(book);
-        return savedBook;
+    public BookDTO addNewBook(@RequestBody Book book) {
+        return bookService.saveBook(book);
     }
 
-    @PutMapping("/book")
-    public Book updateBook(@RequestBody Book book) {
-        Book updatedBook = bookService.saveBook(book);
-        return updatedBook;
+    @PutMapping("/book/{id}")
+    public BookDTO updateBook(@RequestBody Book book, @PathVariable Long id) {
+        return bookService.update(book,id);
     }
 
     @DeleteMapping("/book/{id}")
     public ResponseEntity<?> deleteBook(@PathVariable Long id) {
-        Book book = bookService.findById(id);
-        if (book.getId() == null)
-            return new ResponseEntity<>("The book with this ID=" + id + " does not exist!", HttpStatus.BAD_REQUEST);
         bookService.deleteBook(id);
         return new ResponseEntity<>("Book with ID =" + id + " was deleted", HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/books/author/{author}")
+    @GetMapping("/book/author/{author}")
     public ResponseEntity<?> getBookByTitleContains(@PathVariable String author) {
-        List<Book> books = bookService.findBookByAuthorContains(author);
-        if (books.size() <= 0)
-            return new ResponseEntity<>("The book with this author=\"" + author + "\" does not exist!"
-                    , HttpStatus.BAD_REQUEST);
-        return new ResponseEntity<>(books,HttpStatus.OK);
+        return new ResponseEntity<>(bookService.findBookByAuthorContains(author),HttpStatus.OK);
     }
 
-    @GetMapping("/books/title/{title}")
+    @GetMapping("/book/title/{title}")
     public ResponseEntity<?> getBookByAuthorContains(@PathVariable String title) {
-        List<Book> books = bookService.findBookByTitleContains(title);
-        if (books.size() <= 0)
-        return new ResponseEntity<>("The book with this title=\"" + title + "\" does not exist!"
-                , HttpStatus.BAD_REQUEST);
-        return new ResponseEntity<>(books,HttpStatus.OK);
+        return new ResponseEntity<>(bookService.findBookByTitleContains(title),HttpStatus.OK);
     }
 
-    @GetMapping("/books/author/{author}/title/{title}")
+    @GetMapping("/book/author/{author}/title/{title}")
     public ResponseEntity<?> getBookByAuthorContains(@PathVariable String author, @PathVariable String title) {
-        List<Book> books = bookService.findBookByAuthorContainsAndTitleContains(author,title);
-        if (books.size() <= 0)
-            return new ResponseEntity<>("The book with this author=\"" + author
-                    + "\" and title=\"" + title
-                    + "\" does not exist!"
-                    , HttpStatus.BAD_REQUEST);
-        return new ResponseEntity<>(books,HttpStatus.OK);
+        return new ResponseEntity<>(bookService.findBookByAuthorContainsAndTitleContains(author,title),HttpStatus.OK);
     }
 }

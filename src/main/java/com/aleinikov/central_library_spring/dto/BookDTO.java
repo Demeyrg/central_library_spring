@@ -1,39 +1,22 @@
-package com.aleinikov.central_library_spring.entities;
+package com.aleinikov.central_library_spring.dto;
 
-import com.sun.istack.NotNull;
+import com.aleinikov.central_library_spring.entities.Library;
+import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
-@Entity
-@Table(name = "books")
-public class Book {
+@Component
+public class BookDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
-
-    @Column(name = "title")
-    @NotNull
     private String title;
-
-    @Column(name = "author")
-    @NotNull
     private String author;
-
-    @Column(name = "order_date")
     private Date orderDate;
-
-    @Column(name = "customer")
     private String customer;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "library_id")
     private Library library;
 
-    public Book() {
+    public BookDTO() {
     }
 
     public Long getId() {
@@ -88,24 +71,24 @@ public class Book {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Book book = (Book) o;
-        return Objects.equals(id, book.id);
+        BookDTO bookDTO = (BookDTO) o;
+        return Objects.equals(id, bookDTO.id) && Objects.equals(title, bookDTO.title) && Objects.equals(author, bookDTO.author) && Objects.equals(orderDate, bookDTO.orderDate) && Objects.equals(customer, bookDTO.customer) && Objects.equals(library, bookDTO.library);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, title, author, orderDate, customer, library);
     }
 
     @Override
     public String toString() {
-        return "Book{" +
+        return "BookDTO{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
-                ", order_date=" + orderDate +
+                ", orderDate=" + orderDate +
                 ", customer='" + customer + '\'' +
-                    ", library=" + library +
+                ", library=" + library +
                 '}';
     }
 }
