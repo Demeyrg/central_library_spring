@@ -33,18 +33,18 @@ public class BookService {
     public BookDTO findById(Long id) {
         Book book = bookRepository.findById(id)
                 .orElseThrow(() -> new BookNotFoundException("id", id.toString()));
-        return bookDtoMapper.bookToDto(book);
+        return bookDtoMapper.toDto(book);
     }
 
     public BookDTO saveBook(Book book) {
         Book savedBook = bookRepository.save(book);
-        return bookDtoMapper.bookToDto(savedBook);
+        return bookDtoMapper.toDto(savedBook);
     }
 
     public BookDTO update(Book book, Long id) {
         findById(id);
         book.setId(id);
-        return bookDtoMapper.bookToDto(bookRepository.save(book));
+        return bookDtoMapper.toDto(bookRepository.save(book));
     }
 
     public void deleteBook(Long id) {

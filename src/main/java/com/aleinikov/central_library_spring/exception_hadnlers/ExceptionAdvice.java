@@ -3,6 +3,7 @@ package com.aleinikov.central_library_spring.exception_hadnlers;
 import com.aleinikov.central_library_spring.exception_hadnlers.exceptions.BookNotFoundException;
 import com.aleinikov.central_library_spring.exception_hadnlers.exceptions.LibraryNotFoundException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,6 +23,13 @@ public class ExceptionAdvice {
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
     String bookNotFoundHandler(LibraryNotFoundException exception) {
+        return exception.getMessage();
+    }
+
+    @ExceptionHandler(UsernameNotFoundException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    String usernameNotFoundHandler(UsernameNotFoundException exception) {
         return exception.getMessage();
     }
 }

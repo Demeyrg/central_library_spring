@@ -9,4 +9,7 @@
     <include file="db/changelog/changeset/2022.02.17_10:34:00_create-books-table.xml"/>
     <include file="db/changelog/changeset/2022.02.17_10:35:00_add-books-in-table.xml"/>
     <include file="db/changelog/changeset/2022.02.17_10:35:39_create-libraries-table.xml"/>
+    <include file="db/changelog/changeset/2022.02.21_10:15:40_create-user-table.xml"/>
+    <include file="db/changelog/changeset/2022.02.21_10:41:35_create-user_role-table.xml"/>
+    <include file="db/changelog/changeset/2022.02.21_10:43:25_add-user-and-roles.xml"/>
 </databaseChangeLog>

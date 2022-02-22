@@ -1,10 +1,7 @@
 package com.aleinikov.central_library_spring.services;
 
-import com.aleinikov.central_library_spring.dto.BookDTO;
 import com.aleinikov.central_library_spring.dto.LibraryDTO;
-import com.aleinikov.central_library_spring.dto.mapper.BookDtoMapper;
 import com.aleinikov.central_library_spring.dto.mapper.LibraryDtoMapper;
-import com.aleinikov.central_library_spring.entities.Book;
 import com.aleinikov.central_library_spring.entities.Library;
 import com.aleinikov.central_library_spring.exception_hadnlers.exceptions.LibraryNotFoundException;
 import com.aleinikov.central_library_spring.repositories.BookRepository;

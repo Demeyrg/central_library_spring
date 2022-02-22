@@ -1,7 +1,5 @@
 package com.aleinikov.central_library_spring.dto;
 
-import com.aleinikov.central_library_spring.entities.Book;
-
 import java.util.ArrayList;
 import java.util.List;
 

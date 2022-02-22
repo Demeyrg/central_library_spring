@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 public class BookDtoMapper {
 
-    public BookDTO bookToDto(Book book) {
+    public BookDTO toDto(Book book) {
         BookDTO bookDTO = new BookDTO();
         bookDTO.setId(book.getId());
         bookDTO.setAuthor(book.getAuthor());
@@ -21,7 +21,7 @@ public class BookDtoMapper {
         return bookDTO;
     }
 
-    public Book dtoToBook(BookDTO bookDTO) {
+    public Book dtoTo(BookDTO bookDTO) {
         Book book = new Book();
         book.setId(bookDTO.getId());
         book.setAuthor(bookDTO.getAuthor());
@@ -35,14 +35,14 @@ public class BookDtoMapper {
     public List<BookDTO> bookListToDtoList(List<Book> books) {
         List<BookDTO> booksDTO = new ArrayList<>();
         for (Book book:books)
-            booksDTO.add(bookToDto(book));
+            booksDTO.add(toDto(book));
         return booksDTO;
     }
 
     public List<Book> bookDtoListToBookList(List<BookDTO> booksDTOS) {
         List<Book> books = new ArrayList<>();
         for (BookDTO bookDTO:booksDTOS)
-            books.add(dtoToBook(bookDTO));
+            books.add(dtoTo(bookDTO));
         return books;
     }
 }

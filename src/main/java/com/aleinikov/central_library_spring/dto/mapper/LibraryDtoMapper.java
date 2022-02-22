@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class LibraryDtoMapper {
@@ -24,7 +23,7 @@ public class LibraryDtoMapper {
         libraryDTO.setName(library.getName());
         libraryDTO.setId(library.getId());
         for(Book book : library.returnBooksList()) {
-            libraryDTO.addBook(bookDtoMapper.bookToDto(book));
+            libraryDTO.addBook(bookDtoMapper.toDto(book));
         }
         return libraryDTO;
     }
@@ -34,7 +33,7 @@ public class LibraryDtoMapper {
         library.setName(libraryDTO.getName());
         library.setId(libraryDTO.getId());
         for (BookDTO bookDTO : libraryDTO.getBooks()) {
-            library.addBook(bookDtoMapper.dtoToBook(bookDTO));
+            library.addBook(bookDtoMapper.dtoTo(bookDTO));
         }
         return library;
     }
